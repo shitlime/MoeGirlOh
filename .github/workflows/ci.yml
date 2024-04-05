@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 20 1,15 * *' # UTC20:00 on the 1st and 15th day of each month
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11.8
+
+      # Runs a single command using the runners shell
+      - name: Run script
+        id: run
+        run: python moegirl-all.py
+
+      # Runs a set of commands using the runners shell
+      - name: upload all titles
+        uses: actions/upload-artifact@v3
+        with:
+          name: all-titles
+          path: out/moegirl-all-titles.txt
+
+      - name: Get the date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+      # Release
+      - name: upload all titles to release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "v${{ steps.date.outputs.date }}"
+          prerelease: false
+          title: "Moegirl all titles ✨ ${{ steps.date.outputs.date }}"
+          files: out/moegirl-all-titles.txt
