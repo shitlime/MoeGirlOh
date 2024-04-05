@@ -58,7 +58,8 @@ if __name__ == '__main__':
     tCount = 0
     titlesList = []
     while nextPageUrl != None:
-        while True:
+        html = None
+        while not html:
             try:
                 html = getHTML(url)
             except HTTPError as e:
