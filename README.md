@@ -10,7 +10,7 @@
 
 词条标题作为词语具有一定价值，例如：制作输入法词库、分析流行用语趋势等。
 
-本项目旨在获取所有萌娘词条，按计划会定期发布到[release](https://github.com/shitlime/MoeGirlOh/releases)。
+本项目旨在获取所有萌娘词条，按计划会定期发布词条到[release](https://github.com/shitlime/MoeGirlOh/releases)。
 
 
 ## 2️⃣如何使用
@@ -29,12 +29,12 @@ python moegirl-all.py
 
 ## 3️⃣运行时out文件夹中的文件说明
 
-+ `萌娘词条.txt`    全部词条
++ `moegirl-all-titles.txt`    全部词条
 + `萌娘词条a.txt`    过程中累积记录的词条（很可能不完全，用于Debug，会占用一定空间需手动删除）
 + `nextPage`    用于爬取中断与恢复
 
 
-## 声明
+## ⚠️声明
 
 **本项目仅供学习参考，请勿用于非法用途。**  
 

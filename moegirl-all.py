@@ -46,11 +46,11 @@ if __name__ == '__main__':
     moegirlAllPageUrl = 'https://zh.moegirl.org.cn/Special:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2'
     url = moegirlAllPageUrl
     nextPageUrl = ''
-    # path处填写爬取的词条存放的文件夹
-    path = "out"
+    path = "out"  # 填写爬取的词条存放的文件夹
+
+    # 运行
     if not os.path.isdir(path):
         os.makedirs(path)
-
     if os.path.isfile(os.path.join(path, 'nextPage')):
         nextPageUrl = readTXT(path, 'nextPage')
         if nextPageUrl != '':
@@ -58,7 +58,13 @@ if __name__ == '__main__':
     tCount = 0
     titlesList = []
     while nextPageUrl != None:
-        html = getHTML(url)
+        while True:
+            try:
+                html = getHTML(url)
+            except HTTPError as e:
+                print(e)
+                print("HTTP错误！休息5秒……")
+                time.sleep(5)
         #saveTXT(html, path, 'AllPage.html')
         titles = getTitle(html)
         print(titles)
@@ -71,9 +77,10 @@ if __name__ == '__main__':
         print('当前页词条数%s\t累计词条数%s'%(len(titles), tCount))
         titlesList.extend(titles)
         saveTXT(unescape('\n'.join(titles)), path, '萌娘词条a.txt', 'ab')
-        
+
+    # 保存
     allTitles = unescape('\n'.join(titlesList))
-    saveTXT(allTitles, path, '萌娘词条.txt')
+    saveTXT(allTitles, path, 'moegirl-all-titles.txt')
     print('完成！！！')
     #清除nextPage
     saveTXT('', path, 'nextPage')
