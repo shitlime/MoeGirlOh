@@ -7,6 +7,9 @@ from html import unescape
 from urllib import request
 
 def getHTML(url: str):
+    """
+    获取URL的HTML代码
+    """
     headers = {
     'User-Agent': '''Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 QIHU 360SE'''
     }
@@ -15,12 +18,18 @@ def getHTML(url: str):
     html = page.read().decode('utf-8')
     return html
 
-def getTitle(html: str):
+def getTitles(html: str):
+    """
+    从HTML中获取所有词条标题
+    """
     title = re.compile(r'<li.*title="(.*)".*</li>')
     titles = title.findall(html)
     return titles
 
 def getNext(html: str):
+    """
+    获取下一页的URL路径
+    """
     nextPage = re.compile(r'<a href="(\S*)" \S*>下一页.*</a>')
     nextPageUrl = nextPage.search(html)
     try:
@@ -30,11 +39,17 @@ def getNext(html: str):
     return nextPageUrl
 
 def saveTXT(data: str, path: str, name: str, mode='wb'):
+    """
+    保存字符串到文本文件
+    """
     f = open(os.path.join(path, name), mode)
     f.write(data.encode('utf-8'))
     f.close()
 
 def readTXT(path: str, name: str, mode='rb'):
+    """
+    从文本文件读取字符串
+    """
     f = open(os.path.join(path, name), mode)
     s = f.read().decode('utf-8')
     f.close()
@@ -67,7 +82,7 @@ if __name__ == '__main__':
                 print("HTTP错误！休息5秒……")
                 time.sleep(5)
         #saveTXT(html, path, 'AllPage.html')
-        titles = getTitle(html)
+        titles = getTitles(html)
         print(titles)
         nextPageUrl = getNext(html)
         if nextPageUrl != None:
@@ -85,4 +100,3 @@ if __name__ == '__main__':
     print('完成！！！')
     #清除nextPage
     saveTXT('', path, 'nextPage')
-    exit()
