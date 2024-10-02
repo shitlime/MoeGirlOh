@@ -15,10 +15,12 @@
 
 词条标题作为词语具有一定价值，例如：制作输入法词库、分析流行用语趋势等。
 
-本项目旨在获取所有萌娘词条，按计划会定期发布词条到[release](https://github.com/shitlime/MoeGirlOh/releases)。
+**本项目旨在获取所有萌娘词条，按计划会定期发布词条到 [release](https://github.com/shitlime/MoeGirlOh/releases)。**
 
 
 ## 2️⃣如何使用
+
+*注：2、3 部分仅面向希望运行脚本的，只想要词条数据请自行到 [release](https://github.com/shitlime/MoeGirlOh/releases) 获取。*
 
 1. 克隆仓库并进入文件夹。
 ```shell
