@@ -57,8 +57,8 @@ def readTXT(path: str, name: str, mode='rb'):
 
 if __name__ == '__main__':
     # 配置
-    moegirlUrl = 'https://zh.moegirl.org.cn'
-    moegirlAllPageUrl = 'https://zh.moegirl.org.cn/Special:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2'
+    moegirlUrl = 'https://zh.moegirl.icu'
+    moegirlAllPageUrl = f'{moegirlUrl}/Special:%E6%89%80%E6%9C%89%E9%A1%B5%E9%9D%A2'
     url = moegirlAllPageUrl
     nextPageUrl = ''
     path = "out"  # 填写爬取的词条存放的文件夹
