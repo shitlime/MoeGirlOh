@@ -22,7 +22,7 @@ def getTitles(html: str):
     """
     从HTML中获取所有词条标题
     """
-    title = re.compile(r'<li.*title="(.*)".*</li>')
+    title = re.compile(r'<li.*title="(.*?)".*(?<!</span>)</a></li>')
     titles = title.findall(html)
     return titles
 
