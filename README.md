@@ -34,11 +34,9 @@ python moegirl-all.py
 ```
 
 
-## 3️⃣运行时out文件夹中的文件说明
+## 3️⃣运行时文件夹中的文件说明
 
 + `moegirl-all-titles.txt`    全部词条
-+ `萌娘词条a.txt`    过程中累积记录的词条（很可能不完全，用于Debug，会占用一定空间需手动删除）
-+ `nextPage`    用于爬取中断与恢复
 
 
 ## ⚠️声明
