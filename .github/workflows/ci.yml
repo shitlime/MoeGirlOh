@@ -35,7 +35,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: all-titles
-          path: out/moegirl-all-titles.txt
+          path: moegirl-all-titles.txt
 
       - name: Get the date
         id: date
@@ -49,4 +49,4 @@ jobs:
           automatic_release_tag: "v${{ steps.date.outputs.date }}"
           prerelease: false
           title: "Moegirl all titles ✨ ${{ steps.date.outputs.date }}"
-          files: out/moegirl-all-titles.txt
+          files: moegirl-all-titles.txt
